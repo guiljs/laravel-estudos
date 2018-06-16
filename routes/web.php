@@ -1,5 +1,6 @@
 <?php
 
+use App\Task;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +14,8 @@
 
 Route::get('/tasks', function () {
 
-    $tasks = DB::table('tasks')->get();
+    // $tasks = DB::table('tasks')->get();
+    $tasks = Task::all();
     $name = 'Guilherme';
     $teste = 'TESTE';
     return view('tasks.index', compact('name', 'teste', 'tasks'));
@@ -23,9 +25,9 @@ Route::get('/tasks/{task}', function ($id) {
 
     // dd($id); //Die and dump
     // $tasks = DB::table('tasks')->find($id);
-    $tasks = App\Task::all();
+    $task = Task::find($id);
 
-    return view('tasks.show', compact('tasks'));
+    return view('tasks.show', compact('task'));
 });
 
 Route::get('/about', function () {
