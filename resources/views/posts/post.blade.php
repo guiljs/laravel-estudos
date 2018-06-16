@@ -9,6 +9,7 @@
     <p class="blog-post-meta">{{$post->created_at->toFormattedDateString()}} by <a href="#">Guilherme</a></p>  <!-- A data é uma instância da biblioteca Carbon nesbot já inclusa no Laravel-->
 
     {{$post->body}}
+    
 
 </div><!-- /.blog-post -->
 

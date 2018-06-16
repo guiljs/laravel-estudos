@@ -12,4 +12,10 @@ class Post extends Model
     // protected $guarded = []; //Not guarded anything, so MassAssignmentException is ok.
 
     //Just using above code in a customized parent  Model class.
+
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class); //Comment::class is the same of App\Comment
+    }
 }
