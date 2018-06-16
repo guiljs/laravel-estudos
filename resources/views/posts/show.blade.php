@@ -32,7 +32,31 @@
                 @endforeach
                 
             </ul>
-        
+
+            <!-- Add a comment -->
+            <hr>
+
+            <div class="card">
+                <div class="card-body">
+
+                    @include('layout.errors')
+
+                    <form method="POST" action="/posts/{{ $post->id }}/comments">
+                            
+                        {{ csrf_field() }}
+
+                        {{ method_field('PATCH') }}  <!-- Some processers already undertand PATCH -->
+
+                        <div class="form-group">
+                            <textarea name="body" id="" placeholder="Seu comentário aqui"  class="form-control" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Add a comment</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
         </div>
     </div>
 @endsection

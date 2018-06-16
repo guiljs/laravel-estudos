@@ -8,6 +8,9 @@ Route::post('/posts','PostsController@store');
 
 Route::get('/posts/{post}', 'PostsController@show');
 
+Route::patch('/posts/{post}/comments','CommentsController@store');
+
+
 
 //controller => PostsController
 

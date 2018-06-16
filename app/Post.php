@@ -18,4 +18,17 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class); //Comment::class is the same of App\Comment
     }
+
+    public function addComment($body)
+    {
+                //add a comment to a post
+
+                // Comment::create([
+                //     'body' => $body,
+                //     'post_id' => $this->id,
+                //     'user_id' => 1
+                // ]);
+
+                $this->comments()->create(compact('body'));
+    }
 }
