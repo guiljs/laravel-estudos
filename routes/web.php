@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/tasks', function () {
 
     $tasks = DB::table('tasks')->get();
     $name = 'Guilherme';
     $teste = 'TESTE';
-     return view('welcome',compact('name','teste','tasks'));
+     return view('tasks.index',compact('name','teste','tasks'));
 });
 
 Route::get('/tasks/{task}', function ($id) {
@@ -24,7 +24,7 @@ Route::get('/tasks/{task}', function ($id) {
     // dd($id); //Die and dump
     $task = DB::table('tasks')->find($id);
 
-     dd($task);
+     return view('tasks.show',compact('task'));
 });
 
 Route::get('/about', function () {
