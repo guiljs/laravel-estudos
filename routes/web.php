@@ -12,7 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $tasks = [
+        'Estudar Laravel',
+        'Dormir',
+        'Levar filho para escola',
+        'Estudar',
+        'Tomar café da manhã',
+        'Trabalhar'
+    ];
+
+    $name = 'Guilherme';
+    $teste = 'TESTE';
+    return view('welcome',compact('name','teste','tasks'));
 });
 
 Route::get('/about', function () {
