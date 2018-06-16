@@ -49,6 +49,10 @@ class PostsController extends Controller
         //     'body' => request('body'),
         // ]);
 
+        $this->validate(request(), [
+            'title' => 'required',
+            'body' => 'required',
+        ]);
 
         Post::create(request(['title', 'body'])); //Can use this way instead of above if the fields in the form correspond to database.
 
