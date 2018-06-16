@@ -13,18 +13,22 @@
 
 Route::get('/', function () {
 
-    $tasks = [
-        'Estudar Laravel',
-        'Dormir',
-        'Levar filho para escola',
-        'Estudar',
-        'Tomar café da manhã',
-        'Trabalhar'
-    ];
+    $tasks = DB::table('tasks')->get();
+
+    // return $tasks;
+
+    // $tasks = [
+    //     'Estudar Laravel',
+    //     'Dormir',
+    //     'Levar filho para escola',
+    //     'Estudar',
+    //     'Tomar café da manhã',
+    //     'Trabalhar'
+    // ];
 
     $name = 'Guilherme';
     $teste = 'TESTE';
-    return view('welcome',compact('name','teste','tasks'));
+     return view('welcome',compact('name','teste','tasks'));
 });
 
 Route::get('/about', function () {
