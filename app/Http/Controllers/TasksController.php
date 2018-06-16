@@ -18,7 +18,7 @@ class TasksController extends Controller
 
     public function show(Task $task) //Task::find(wildcard)
     {
-        // return $task;
+        // return $task;  //Return a Json of task object
         // $task = Task::find($id);
 
         return view('tasks.show', compact('task'));

@@ -1,8 +1,11 @@
 <?php
 
-Route::get('/tasks', 'TasksController@index');
-Route::get('/tasks/{task}', 'TasksController@show');
+Route::get('/', 'PostsController@index');
+Route::get('/post/{post}', 'PostsController@show');
 
-Route::get('/about', function () {
-    return view('about');
-});
+
+//controller => PostsController
+
+// Eloquent model => Post
+
+// migration => create_posts_table
