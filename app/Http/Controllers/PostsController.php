@@ -10,13 +10,25 @@ class PostsController extends Controller
 {
     public function index()
     {
-        return view('posts.index');
+        // $posts = Post::orderBy('id','DESC')->get();
+        $posts = Post::latest()->get(); //It is a query scope, so it's shorter than line above
+
+        return view('posts.index', compact('posts')); //My post view has access to a collection of posts
 
     }
 
-    public function show()
+    // public function show($id)
+    // {
+    //     $post = Post::find($id);
+
+    //     return view('posts.show', compact('post'));
+    // }
+    public function show(Post $post)
     {
-        return view('posts.show');
+        //REmember if we use show(Post $post) insted of show($id), Laravel recognizes and do the job for us.
+        // $post = Post::find($id);
+
+        return view('posts.show', compact('post'));
     }
 
     public function create()

@@ -1,10 +1,12 @@
 <?php
 
 Route::get('/', 'PostsController@index');
-// Route::get('/post/{post}', 'PostsController@show');
-Route::get('/post/create', 'PostsController@create');
+
+Route::get('/posts/create', 'PostsController@create');
 
 Route::post('/posts','PostsController@store');
+
+Route::get('/posts/{post}', 'PostsController@show');
 
 
 //controller => PostsController
