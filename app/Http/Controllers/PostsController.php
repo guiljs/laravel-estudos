@@ -16,10 +16,30 @@ class PostsController extends Controller
     }
     public function index()
     {
-        // $posts = Post::orderBy('id','DESC')->get();
-        $posts = Post::latest()->get(); //It is a query scope, so it's shorter than line above
+        $posts = Post::latest()
+            ->filter(request(['month', 'year']))
+            ->get();
 
-        return view('posts.index', compact('posts')); //My post view has access to a collection of posts
+        // // $posts = Post::orderBy('id','DESC')->get();
+        // $posts = Post::latest(); //It is a query scope, so it's shorter than line above
+
+        // if ($month = request('month')) {
+        //     $posts->whereMonth('created_at', Carbon::parse($month)->month);
+        // }
+
+        // if ($year = request('year')) {
+        //     $posts->whereYear('created_at',$year);
+        // }
+
+        // $posts = $posts->get();
+
+        $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month , count(*) as published')
+            ->groupBy('year', 'month')
+            ->orderByRaw('min(created_at) desc')
+            ->get()
+            ->toArray();
+
+        return view('posts.index', compact('posts', 'archives')); //My post view has access to a collection of posts
 
     }
 
