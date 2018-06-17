@@ -8,6 +8,12 @@ use App\Post;
 
 class PostsController extends Controller
 {
+    public function __construct()
+    {
+
+        $this->middleware('auth')->except('index', 'show');
+
+    }
     public function index()
     {
         // $posts = Post::orderBy('id','DESC')->get();
@@ -66,7 +72,16 @@ class PostsController extends Controller
             'body' => 'required',
         ]);
 
-        Post::create(request(['title', 'body'])); //Can use this way instead of above if the fields in the form correspond to database.
+        auth()->user()->publish(
+            new Post(request(['title', 'body']))
+        );
+
+        // Post::create(request(['title', 'body'])); //Can use this way instead of above if the fields in the form correspond to database.
+        // Post::create([
+        //     'title' => request('title'),
+        //     'body' => request('body'),
+        //     'user_id' => auth()->id()
+        // ]);
 
         //Redirect back to home page
         return redirect('/');
