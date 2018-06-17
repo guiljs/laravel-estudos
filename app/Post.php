@@ -13,7 +13,6 @@ class Post extends Model
 
     //Just using above code in a customized parent  Model class.
 
-
     public function comments()
     {
         return $this->hasMany(Comment::class); //Comment::class is the same of App\Comment
@@ -21,14 +20,19 @@ class Post extends Model
 
     public function addComment($body)
     {
-                //add a comment to a post
+        //add a comment to a post
 
-                // Comment::create([
-                //     'body' => $body,
-                //     'post_id' => $this->id,
-                //     'user_id' => 1
-                // ]);
+        // Comment::create([
+        //     'body' => $body,
+        //     'post_id' => $this->id,
+        //     'user_id' => 1
+        // ]);
 
-                $this->comments()->create(compact('body'));
+        $this->comments()->create(compact('body'));
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
